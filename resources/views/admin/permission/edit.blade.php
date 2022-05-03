@@ -34,7 +34,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="permissionForm" method="POST" action="{{ route('adminpermissions.update', $permission) }} ">
+              <form id="permissionForm" method="POST" action="{{ route('adminpermissions.update', $permission->id) }} ">
                 @csrf
                 @method('PUT')
                 <div class="card-body">
