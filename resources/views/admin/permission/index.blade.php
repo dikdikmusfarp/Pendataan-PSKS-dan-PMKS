@@ -62,7 +62,7 @@
                                 </i>
                                 View
                             </a>
-                            <a class="btn btn-info btn-sm" href="#">
+                            <a class="btn btn-info btn-sm" href="{{ route('adminpermissions.edit', $permission->id) }}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Edit
