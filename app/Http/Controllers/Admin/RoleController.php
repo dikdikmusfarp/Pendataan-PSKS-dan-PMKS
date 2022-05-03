@@ -24,4 +24,15 @@ class RoleController extends Controller
         Role::create($validated);
         return to_route('adminroles.index')->with('message', 'Role Created successfully.');
     }
+
+    public function edit(Role $role) {
+        return view('admin.role.edit', compact('role'));
+    }
+
+    public function update(Request $request, Role $role) {
+        $validated = $request->validate(['name'=> 'required']);
+        $role->update($validated);
+
+        return to_route('adminroles.index');
+    }
 }
