@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Role;
 class RoleController extends Controller
 {
     public function index() {
-        $roles = Role::all();
+        $roles = Role::whereNotIn('name', ['admin'])->get();
         return view('admin.role.index', compact('roles'));
     }
 
@@ -34,5 +34,10 @@ class RoleController extends Controller
         $role->update($validated);
 
         return to_route('adminroles.index');
+    }
+
+    public function destroy(Role $role) {
+        $role->delete();
+        return back();
     }
 }

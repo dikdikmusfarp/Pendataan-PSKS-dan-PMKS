@@ -57,21 +57,21 @@
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $permission->name }}</td>
                         <td class="project-actions text-right">
-                            <a class="btn btn-primary btn-sm" href="#">
-                                <i class="fas fa-folder">
-                                </i>
-                                View
-                            </a>
-                            <a class="btn btn-info btn-sm" href="{{ route('adminpermissions.edit', $permission->id) }}">
-                                <i class="fas fa-pencil-alt">
-                                </i>
-                                Edit
-                            </a>
-                            <a class="btn btn-danger btn-sm" href="#">
-                                <i class="fas fa-trash">
-                                </i>
-                                Delete
-                            </a>
+                            <form method="POST" action="{{ route('adminpermissions.destroy', $permission->id) }}" onsubmit="return confirm('Are you sure?');">
+                            @csrf
+                            @method('DELETE')
+                                <a class="btn btn-primary btn-sm" href="#">
+                                    <i class="fas fa-folder">
+                                    </i>
+                                    View
+                                </a>
+                                <a class="btn btn-info btn-sm" href="{{ route('adminpermissions.edit', $permission->id) }}">
+                                    <i class="fas fa-pencil-alt">
+                                    </i>
+                                    Edit
+                                </a>
+                                <input type="submit" class="btn btn-danger btn-sm" value="Delete">
+                            </form>
                         </td>
                     </tr>
                 @empty
