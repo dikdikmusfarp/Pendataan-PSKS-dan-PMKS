@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class PermissionController extends Controller
 {
@@ -22,7 +24,8 @@ class PermissionController extends Controller
             'name' => ['required',
             ]]);
         Permission::create($validated);
-        return to_route('adminpermissions.index')->with('message', 'Permission Created successfully.');
+        Alert::success('Success', 'Permission has been added');
+        return to_route('adminpermissions.index');
     }
 
     public function edit(Permission $permission) {
@@ -32,12 +35,13 @@ class PermissionController extends Controller
     public function update(Request $request, Permission $permission) {
         $validated = $request->validate(['name'=> 'required']);
         $permission->update($validated);
-
+        Alert::success('Updated', 'Permission has been changed');
         return to_route('adminpermissions.index');
     }
 
     public function destroy(Permission $permission) {
         $permission->delete();
+        Alert::warning('Warning', 'Permission has been deleted');
         return back();
     }
 }
